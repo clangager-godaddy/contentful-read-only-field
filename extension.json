@@ -2,5 +2,5 @@
   "id": "readOnlyField",
   "name": "Read Only Field",
   "srcdoc": "./index.html",
-  "fieldTypes": ["Number"]
+  "fieldTypes": ["String", "Number"]
 }

@@ -6,24 +6,23 @@
       rel="stylesheet"
       href="//contentful.github.io/ui-extensions-sdk/cf-extension.css"
     />
-    <style type="text/css">
-      .readonly {
-        border: solid 1px red;
-      }
-    </style>
   </head>
   <body>
     <div class="cf-form-field">
-      <div class="read-only">woah here we go</div>
+      <div id="value">woah here we go</div>
     </div>
 
     <!-- Contenful UI Extensions SDK API -->
     <script src="https://unpkg.com/contentful-ui-extensions-sdk@3"></script>
 
     <script>
-      function init(extensionsApi) {
+      function extension(sdk) {
         console.log("init called");
+        const value = sdk.field.getValue();
+        document.getElementById("value").innerHTML = value;
       }
+
+      window.contentfulExtension.init(extension);
     </script>
   </body>
 </html>
