@@ -9,17 +9,25 @@
   </head>
   <body>
     <div class="cf-form-field">
-      <div id="value">woah here we go</div>
+      <div id="value"></div>
     </div>
 
     <!-- Contenful UI Extensions SDK API -->
     <script src="https://unpkg.com/contentful-ui-extensions-sdk@3"></script>
 
     <script>
+      function renderValue(value) {
+        document.getElementById("value").innerHTML = value || "...";
+      }
+
       function extension(sdk) {
-        console.log("init called");
+        sdk.window.startAutoResizer();
+
         const value = sdk.field.getValue();
-        document.getElementById("value").innerHTML = value;
+        renderValue(value);
+
+        var detachValueChangeHandler = sdk.field.onValueChanged(renderValue);
+        window.addEventListener("onbeforeunload", detachValueChangeHandler);
       }
 
       window.contentfulExtension.init(extension);
